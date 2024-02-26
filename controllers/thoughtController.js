@@ -53,7 +53,7 @@ module.exports = {
             );
 
             if(!thought) {
-                res.status(404).json({ message: "Could not find thought" });
+                return res.status(404).json({ message: "Could not find thought" });
             }
 
             res.json({ message: "Thought updated successfully" }, thought);
@@ -67,7 +67,7 @@ module.exports = {
             const thought = await Thought.findOneAndDelete({ _id: req.params.thoughtId });
 
             if(!thought) {
-                res.status(404).json({ message: "Could not find thought"});
+                return res.status(404).json({ message: "Could not find thought"});
             }
 
             res.json({ message: "Thought deleted successfully" });
@@ -85,7 +85,7 @@ module.exports = {
             );
 
             if(!newReaction) {
-                res.status(404).json({ message: "Could not find thought"});
+                return res.status(404).json({ message: "Could not find thought"});
             }
 
             res.json(newReaction);
@@ -98,11 +98,12 @@ module.exports = {
         try {
             const thought = await Thought.findOneAndUpdate(
                 { _id: req.params.thoughtId },
-                { $pull: { reactions: { _id: req.params.reactionId }}}
+                { $pull: { reactions: { _id: req.params.reactionId }}},
+                { new: true }
             );
 
             if(!thought) {
-                res.status(404).json({ message: "Could not find thought"});
+                return res.status(404).json({ message: "Could not find thought"});
             }
 
             res.json({ message: "Reaction successfully deleted" });
