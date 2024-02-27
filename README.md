@@ -25,7 +25,8 @@
 
   Run npm seed and npm start in your terminal
 
-  
+  [Social Network Demo.webm](https://github.com/hansl40721/social-network-api/assets/123116520/7e813065-ce26-4b8e-8a97-f19599e973e3)
+
 
   ## Credits 
 
