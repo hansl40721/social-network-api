@@ -19,7 +19,7 @@ module.exports = {
                 return res.status(404).json({ message: "Could not find user" });
             }
 
-            res.json(user);
+            res.status(200).json(user);
         } catch (err) {
             res.status(500).json(err);
         }
@@ -29,8 +29,9 @@ module.exports = {
         try {
             const newUser = await User.create(req.body);
 
-            res.json({ message: "User created successfully"}, newUser);
+            res.status(200).json(newUser);
         } catch (err) {
+            console.log(err);
             res.status(500).json(err);
         }
     },
@@ -43,11 +44,11 @@ module.exports = {
                 { new: true }
             );
 
-            if(user) {
+            if(!user) {
                 return res.status(404).json({ message: "Could not find user" });
             }
 
-            res.json({ message: "User updated successfully"}, user);
+            res.status(200).json(user);
         } catch (err) {
             res.status(500).json(err);
         }
@@ -61,7 +62,7 @@ module.exports = {
                 return res.status(404).json({ message: "Could not find user" });
             }
 
-            res.json({ message: "User deleted successfully"});
+            res.status(200).json(user);
         } catch (err) {
             res.status(500).json(err);
         }
@@ -79,7 +80,7 @@ module.exports = {
                 return res.status(404).json({ message: "Could not find user" });
             }
 
-            res.json({ message: "Friend added successfully"}, user);
+            res.status(200).json(user);
         } catch (err) {
             res.status(500).json(err);
         }
