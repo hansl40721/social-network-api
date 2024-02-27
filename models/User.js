@@ -12,7 +12,12 @@ const userSchema = new Schema(
             type: String, 
             unique: true,
             required: true,
-            match: /^\S+@\S+\.S+$/
+            validate: {
+                validator: function(email) {
+                    return /^[\w-]+(?:\.[\w-]+)*@(?:[\w-]+\.)+[a-zA-Z]{2,7}$/.test(email);
+                },
+                message: props => `Invalid email address`
+            }
         },
         thoughts: [
             {
